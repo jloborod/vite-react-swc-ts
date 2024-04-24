@@ -1,9 +1,11 @@
 import react from "@vitejs/plugin-react-swc";
 import { defineConfig } from "vitest/config";
+import viteTsconfigPaths from "vite-tsconfig-paths";
+import svgrPlugin from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), viteTsconfigPaths(), svgrPlugin()],
   test: {
     globals: true,
     environment: "jsdom",
@@ -11,5 +13,9 @@ export default defineConfig({
     // you might want to disable it, if you don't have tests that rely on CSS
     // since parsing CSS is slow
     css: true,
+  },
+  server: {
+    open: true,
+    port: 3000,
   },
 });
